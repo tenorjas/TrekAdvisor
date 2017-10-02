@@ -1,0 +1,106 @@
+@model TrekAdvisor.Models.HotelModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>HotelModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="HotelID" />
+            <div class="form-group">
+                <label asp-for="HotelName" class="control-label"></label>
+                <input asp-for="HotelName" class="form-control" />
+                <span asp-validation-for="HotelName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StreetAddress" class="control-label"></label>
+                <input asp-for="StreetAddress" class="form-control" />
+                <span asp-validation-for="StreetAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StreetName" class="control-label"></label>
+                <input asp-for="StreetName" class="form-control" />
+                <span asp-validation-for="StreetName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label"></label>
+                <input asp-for="State" class="form-control" />
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostalCode" class="control-label"></label>
+                <input asp-for="PostalCode" class="form-control" />
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StarRating" class="control-label"></label>
+                <input asp-for="StarRating" class="form-control" />
+                <span asp-validation-for="StarRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OutsidePhoto" class="control-label"></label>
+                <input asp-for="OutsidePhoto" class="form-control" />
+                <span asp-validation-for="OutsidePhoto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InsidePhoto" class="control-label"></label>
+                <input asp-for="InsidePhoto" class="form-control" />
+                <span asp-validation-for="InsidePhoto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OutsideWidth" class="control-label"></label>
+                <input asp-for="OutsideWidth" class="form-control" />
+                <span asp-validation-for="OutsideWidth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OutsideHeight" class="control-label"></label>
+                <input asp-for="OutsideHeight" class="form-control" />
+                <span asp-validation-for="OutsideHeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OutsideContentType" class="control-label"></label>
+                <input asp-for="OutsideContentType" class="form-control" />
+                <span asp-validation-for="OutsideContentType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InsideWidth" class="control-label"></label>
+                <input asp-for="InsideWidth" class="form-control" />
+                <span asp-validation-for="InsideWidth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InsideHeight" class="control-label"></label>
+                <input asp-for="InsideHeight" class="form-control" />
+                <span asp-validation-for="InsideHeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InsideContentType" class="control-label"></label>
+                <input asp-for="InsideContentType" class="form-control" />
+                <span asp-validation-for="InsideContentType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

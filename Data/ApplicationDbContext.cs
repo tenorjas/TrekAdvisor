@@ -10,6 +10,9 @@ namespace TrekAdvisor.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<HotelModel> HotelModel {get; set;}
+        public DbSet<ReviewModel> ReviewModel {get; set;}
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

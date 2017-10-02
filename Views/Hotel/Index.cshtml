@@ -1,0 +1,17 @@
+@model IEnumerable<TrekAdvisor.Models.HotelModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="hotel_main">
+    <div class="hotel_main_info">
+        <h2>Hotel Name</h2>
+        <h5>City, State (or Country)</h5>
+        <h5>X star hotel</h5>
+    </div>
+
+    <img src="http://via.placeholder.com/225x200">
+
+    <a asp-action="Details" asp-route-id="1">Details</a>
+</div>

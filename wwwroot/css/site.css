@@ -62,3 +62,17 @@
 {
     color:white;
 }
+
+.hotel_main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.hotel_main img {
+    margin: 20px 30px;
+}
+
+.hotel_main a {
+    margin-top: 110px;
+}
