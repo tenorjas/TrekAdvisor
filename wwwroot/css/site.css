@@ -45,11 +45,6 @@
     margin-right: 30px;
 }
 
-.hotel_index a {
-    margin-left: 400px;
-    margin-top: 60px;
-}
-
 .navbar-inverse{
     background-color: green;
 }
@@ -63,6 +58,10 @@
     color:white;
 }
 
+.navbar-inverse .btn-link {
+    color: white;
+}
+
 .hotel_main {
     display: flex;
     flex-direction: row;
@@ -71,4 +70,25 @@
 
 .hotel_main img {
     margin: 20px 30px;
+}
+
+textarea {
+    width: 300px;
+    height: 150px;
+}
+
+.review_form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.review_form input {
+    width: 300px;
+    margin-bottom: 10px;
+}
+
+.review_form button {
+    height: 30px;
+    width: 70px;
+    margin-top: 10px;
 }

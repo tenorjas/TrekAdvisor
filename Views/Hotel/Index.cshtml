@@ -1,14 +1,17 @@
-@model IEnumerable<TrekAdvisor.Models.HotelModel>
+@model TrekAdvisor.Models.HotelModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
+
+
 <div class="hotel_main">
     <div class="hotel_main_info">
-        <h2>Hotel Name</h2>
-        <h5>City, State (or Country)</h5>
-        <h5>X star hotel</h5>
+        <h2>@Model.HotelName</h2>
+        <h5>@Model.City, @Model.State</h5>
+        <h5>@Model.StarRating star hotel</h5>
+        <a asp-controller="Home" asp-action="Index">Return to Main Index</a>
     </div>
 
     <img src="http://via.placeholder.com/225x200">
@@ -17,22 +20,28 @@
 </div>
 
 <div class="reviews">
-    <div class="review">
-        <hr>
-        <h3>Review Title</h3>
-        <h5>UserName</h5>
-        <p>Lorem ipsum ...</p>
-    </div>
-    <div class="review">
-        <hr>
-        <h3>Review Title</h3>
-        <h5>UserName</h5>
-        <p>Lorem ipsum ...</p>
-    </div>
-    <div class="review">
-        <hr>
-        <h3>Review Title</h3>
-        <h5>UserName</h5>
-        <p>Lorem ipsum ...</p>
-    </div>
+    @foreach(var review in Model.Reviews)
+    {
+        <div class="review">
+            <hr>
+            <h3>@review.Title</h3>
+            <h5>@review.ApplicationUser.UserName</h5>
+            <h5>Stayed in @review.DateOfStay</h5>
+            <h5>Reviewed on @review.DatePosted</h5>
+            <p>@review.Body</p>
+        </div>
+    }
+
 </div>
+@if(User.Identity.IsAuthenticated) {
+<hr>
+<div class="review_form">
+    <h4>Write a review!</h4>
+    <form asp-controller="Review" asp-action="Create" asp-route-id=@Model.HotelID asp-method=POST>
+        <input type="text" name="title" placeholder="Title">
+        <input type="text" name="dateofstay" placeholder="When did you stay?">
+        <textarea name="body"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+}

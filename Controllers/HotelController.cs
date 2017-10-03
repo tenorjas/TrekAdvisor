@@ -20,9 +20,21 @@ namespace TrekAdvisor.Controllers
         }
 
         // GET: Hotel
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            return View(await _context.HotelModel.ToListAsync());
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var hotelModel = await _context.HotelModel.Include(i => i.Reviews).ThenInclude(u => u.ApplicationUser)
+                .SingleOrDefaultAsync(m => m.HotelID == id);
+            if (hotelModel == null)
+            {
+                return NotFound();
+            }
+
+            return View(hotelModel);
         }
 
         // GET: Hotel/Details/5

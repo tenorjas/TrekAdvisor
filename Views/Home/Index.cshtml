@@ -1,7 +1,20 @@
-﻿@{
+﻿@model IEnumerable<TrekAdvisor.Models.HotelModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
+@foreach (var item in Model) {
+    <div class="hotel_index">
+        <div class="hotel_index_data">
+            <h1>@Html.DisplayFor(modelItem => item.HotelName)</h1>
+            <h5>@Html.DisplayFor(modelItem => item.City), @Html.DisplayFor(modelItem => item.State)</h5>
+            <h5>@Html.DisplayFor(modelItem => item.StarRating) star hotel</h5>
+            <a asp-controller="Hotel" asp-action="Index" asp-route-id="@item.HotelID">Details</a>
+        </div>
+    </div>
+    <hr>
+}
 
 <div class="hotel_index">
     <img src="http://via.placeholder.com/150x150">
@@ -9,8 +22,8 @@
         <h1>Hotel Name</h1>
         <h5>Hotel City</h5>
         <h5>3 star hotel</h5>
+        <a href="">Details</a>
     </div>
-    <a href="">Details</a>
 </div>
 <hr>
 <div class="hotel_index">
@@ -19,8 +32,8 @@
         <h1>Hotel Name</h1>
         <h5>Hotel City</h5>
         <h5>3 star hotel</h5>
+        <a href="">Details</a>
     </div>
-    <a href="">Details</a>
 </div>
 <hr>
 <div class="hotel_index">
@@ -29,7 +42,7 @@
         <h1>Hotel Name</h1>
         <h5>Hotel City</h5>
         <h5>3 star hotel</h5>
+        <a href="">Details</a>
     </div>
-    <a href="">Details</a>
 </div>
 <hr>
