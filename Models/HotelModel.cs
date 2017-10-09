@@ -21,8 +21,8 @@ namespace TrekAdvisor.Models
         public int StarRating {get; set;}
 
         // the following is needed for photos
-        public byte[] OutsidePhoto {get; set;}
-        public byte[] InsidePhoto {get; set;}
+        public string OutsidePhoto {get; set;}
+        public string InsidePhoto {get; set;}
         public int OutsideWidth {get; set;}
         public int OutsideHeight {get; set;}
         public string OutsideContentType {get; set;}
