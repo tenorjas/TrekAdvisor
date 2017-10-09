@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 using TrekAdvisor.Data;
 using TrekAdvisor.Models;
 
@@ -13,10 +16,12 @@ namespace TrekAdvisor.Controllers
     public class HotelController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHostingEnvironment _environment;
 
-        public HotelController(ApplicationDbContext context)
+        public HotelController(ApplicationDbContext context, IHostingEnvironment appEnvironment)
         {
             _context = context;
+            _environment = appEnvironment;
         }
 
         // GET: Hotel
@@ -70,6 +75,38 @@ namespace TrekAdvisor.Controllers
         {
             if (ModelState.IsValid)
             {
+                // UPLOAD: grabs the files from the incoming form
+                var files = HttpContext.Request.Form.Files;
+
+                // UPLOAD: processes each file
+                foreach (var _image in files)
+                {
+                    if (_image != null && _image.Length > 0)
+                    {
+                        var file = _image;
+
+                        // UPLOAD: sets the path of the where the file is stored on the server
+                        var uploads = Path.Combine(_environment.WebRootPath, "uploads/images");
+
+                        if (file.Length > 0)
+                        {
+                            // UPLOAD: creates a new unique file name to store in the uploads folder 
+                            var fileName = Guid.NewGuid().ToString() + "_" + ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.ToString().Trim('"');
+                            var _filePath = Path.Combine(uploads, fileName);
+
+
+                            // UPLOAD: Saves file to local server
+                            using (var fileStream = new FileStream(_filePath, FileMode.Create))
+                            {
+                                await file.CopyToAsync(fileStream);
+
+                                // UPLOAD: sets properties on the new model
+                                hotelModel.OutsidePhoto = fileName;
+                            }
+                        }
+                    }
+                }
+
                 _context.Add(hotelModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

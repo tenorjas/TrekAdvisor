@@ -6,6 +6,7 @@
 
 @foreach (var item in Model) {
     <div class="hotel_index">
+        <img src="/uploads/images/@item.OutsidePhoto" alt="http://via.placeholder.com/150x150"/>
         <div class="hotel_index_data">
             <h1>@Html.DisplayFor(modelItem => item.HotelName)</h1>
             <h5>@Html.DisplayFor(modelItem => item.City), @Html.DisplayFor(modelItem => item.State)</h5>
