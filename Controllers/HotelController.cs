@@ -71,13 +71,13 @@ namespace TrekAdvisor.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HotelID,HotelName,StreetAddress,StreetName,City,State,Country,PostalCode,StarRating,OutsidePhoto,InsidePhoto,OutsideWidth,OutsideHeight,OutsideContentType,InsideWidth,InsideHeight,InsideContentType")] HotelModel hotelModel)
+        public async Task<IActionResult> Create(HotelModel hotelModel)
         {
             if (ModelState.IsValid)
             {
                 // UPLOAD: grabs the files from the incoming form
                 var files = HttpContext.Request.Form.Files;
-
+                Console.WriteLine(files.Count());
                 // UPLOAD: processes each file
                 foreach (var _image in files)
                 {

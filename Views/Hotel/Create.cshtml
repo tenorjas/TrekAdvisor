@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="HotelName" class="control-label"></label>
@@ -61,36 +61,7 @@
                 <input asp-for="InsidePhoto" class="form-control" />
                 <span asp-validation-for="InsidePhoto" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="OutsideWidth" class="control-label"></label>
-                <input asp-for="OutsideWidth" class="form-control" />
-                <span asp-validation-for="OutsideWidth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OutsideHeight" class="control-label"></label>
-                <input asp-for="OutsideHeight" class="form-control" />
-                <span asp-validation-for="OutsideHeight" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OutsideContentType" class="control-label"></label>
-                <input asp-for="OutsideContentType" class="form-control" />
-                <span asp-validation-for="OutsideContentType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="InsideWidth" class="control-label"></label>
-                <input asp-for="InsideWidth" class="form-control" />
-                <span asp-validation-for="InsideWidth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="InsideHeight" class="control-label"></label>
-                <input asp-for="InsideHeight" class="form-control" />
-                <span asp-validation-for="InsideHeight" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="InsideContentType" class="control-label"></label>
-                <input asp-for="InsideContentType" class="form-control" />
-                <span asp-validation-for="InsideContentType" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

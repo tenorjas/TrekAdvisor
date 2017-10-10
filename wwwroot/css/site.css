@@ -44,6 +44,8 @@
 
 .hotel_index img {
     margin-right: 30px;
+    width: 150px;
+    height: 150px;
 }
 
 .navbar-inverse{
@@ -71,6 +73,8 @@
 
 .hotel_main img {
     margin: 20px 30px;
+    width: 225px;
+    height: 200px;
 }
 
 textarea {
