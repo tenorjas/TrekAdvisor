@@ -77,7 +77,6 @@ namespace TrekAdvisor.Controllers
             {
                 // UPLOAD: grabs the files from the incoming form
                 var files = HttpContext.Request.Form.Files;
-                Console.WriteLine(files.Count());
                 // UPLOAD: processes each file
                 foreach (var _image in files)
                 {
@@ -101,7 +100,14 @@ namespace TrekAdvisor.Controllers
                                 await file.CopyToAsync(fileStream);
 
                                 // UPLOAD: sets properties on the new model
-                                hotelModel.OutsidePhoto = fileName;
+                                if (file.Name == "outsidepic")
+                                {
+                                    hotelModel.OutsidePhoto = fileName;
+                                }
+                                else if (file.Name == "insidepic")
+                                {
+                                    hotelModel.InsidePhoto = fileName;
+                                }
                             }
                         }
                     }
@@ -111,7 +117,7 @@ namespace TrekAdvisor.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(hotelModel);
+            return View("Index");
         }
 
         // GET: Hotel/Edit/5
@@ -135,7 +141,7 @@ namespace TrekAdvisor.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HotelID,HotelName,StreetAddress,StreetName,City,State,Country,PostalCode,StarRating,OutsidePhoto,InsidePhoto,OutsideWidth,OutsideHeight,OutsideContentType,InsideWidth,InsideHeight,InsideContentType")] HotelModel hotelModel)
+        public async Task<IActionResult> Edit(int id, HotelModel hotelModel)
         {
             if (id != hotelModel.HotelID)
             {
@@ -146,6 +152,46 @@ namespace TrekAdvisor.Controllers
             {
                 try
                 {
+                    // UPLOAD: grabs the files from the incoming form
+                    var files = HttpContext.Request.Form.Files;
+                    Console.WriteLine(files.Count());
+                    // UPLOAD: processes each file
+                    foreach (var _image in files)
+                    {
+                        if (_image != null && _image.Length > 0)
+                        {
+                            var file = _image;
+
+                            // UPLOAD: sets the path of the where the file is stored on the server
+                            var uploads = Path.Combine(_environment.WebRootPath, "uploads/images");
+
+                            if (file.Length > 0)
+                            {
+                                // UPLOAD: creates a new unique file name to store in the uploads folder 
+                                var fileName = Guid.NewGuid().ToString() + "_" + ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.ToString().Trim('"');
+                                var _filePath = Path.Combine(uploads, fileName);
+
+
+                                // UPLOAD: Saves file to local server
+                                using (var fileStream = new FileStream(_filePath, FileMode.Create))
+                                {
+                                    await file.CopyToAsync(fileStream);
+                                
+                                    // UPLOAD: sets properties on the new model
+                                    if (file.Name == "outsidepic")
+                                    {
+                                        hotelModel.OutsidePhoto = fileName;
+                                    }
+                                    else if (file.Name == "insidepic")
+                                    {
+                                        hotelModel.InsidePhoto = fileName;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
                     _context.Update(hotelModel);
                     await _context.SaveChangesAsync();
                 }
@@ -162,7 +208,7 @@ namespace TrekAdvisor.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(hotelModel);
+            return View("Index");
         }
 
         // GET: Hotel/Delete/5
