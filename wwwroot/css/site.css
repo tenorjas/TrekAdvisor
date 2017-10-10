@@ -97,3 +97,9 @@ textarea {
     width: 70px;
     margin-top: 10px;
 }
+
+.map {
+    margin-top: 20px;
+    width: 225px;
+    height: 200px;
+}
