@@ -20,7 +20,8 @@
     <script type="text/javascript">
       function initMap() {
           var geocoder = new google.maps.Geocoder();
-          var address = "9821 Belhaven Road, Bethesda, MD";
+
+          var address = "@Model.StreetAddress @Model.StreetName, @Model.City, @Model.State";
 
           geocoder.geocode({'address':address}, function(results, status) {
              
